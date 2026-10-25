@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>for restu</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-family: Georgia, serif;
+    color: white;
+    background:
+        radial-gradient(ellipse at bottom, #191b45 0%, #090918 50%, #020207 100%);
+}
+
+/* Langit malam */
+#sky {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+/* Bintang */
+.star {
+    position: absolute;
+    color: white;
+    text-shadow: 0 0 6px white, 0 0 15px #a8baff;
+    animation: sparkle var(--duration) ease-in-out infinite;
+}
+
+@keyframes sparkle {
+    0%, 100% {
+        opacity: 0.2;
+        transform: scale(0.5) rotate(0deg);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.5) rotate(45deg);
+    }
+}
+
+/* Meteor */
+.meteor {
+    position: absolute;
+    width: 120px;
+    height: 2px;
+    background: linear-gradient(90deg, white, #a5baff, transparent);
+    box-shadow: 0 0 12px #b8c7ff;
+    transform: rotate(-35deg);
+    animation: shooting 3s linear forwards;
+}
+
+@keyframes shooting {
+    0% {
+        opacity: 0;
+        translate: 0 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        translate: -350px 220px;
+    }
+}
+
+/* Hati yang melayang */
+.floating-heart {
+    position: absolute;
+    bottom: -30px;
+    color: #ffb6d5;
+    text-shadow: 0 0 12px #ff7fb5;
+    animation: rise linear forwards;
+}
+
+@keyframes rise {
+    0% {
+        transform: translateY(0) rotate(0deg) scale(0.7);
+        opacity: 0;
+    }
+    15% {
+        opacity: 0.9;
+    }
+    100% {
+        transform: translateY(-110vh) rotate(35deg) scale(1.3);
+        opacity: 0;
+    }
+}
+
+/* Kartu utama */
+.container {
+    position: relative;
+    z-index: 2;
+    width: min(90%, 390px);
+    padding: 30px 22px;
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 25px;
+    background: rgba(15, 15, 40, 0.48);
+    backdrop-filter: blur(5px);
+    box-shadow:
+        0 0 25px rgba(125, 145, 255, 0.13),
+        inset 0 0 25px rgba(255,255,255,0.025);
+    animation: appear 1.5s ease;
+}
+
+@keyframes appear {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.small-title {
+    color: #c8cfff;
+    font-family: Arial, sans-serif;
+    font-size: 10px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+}
+
+.heart {
+    margin: 12px 0;
+    font-size: 65px;
+    color: #ffb6d5;
+    text-shadow: 0 0 15px #ff7fb5, 0 0 35px #b56cff;
+    animation: heartbeat 1.2s infinite;
+}
+
+@keyframes heartbeat {
+    0%, 100% { transform: scale(1); }
+    15% { transform: scale(1.16); }
+    30% { transform: scale(1); }
+    45% { transform: scale(1.12); }
+}
+
+h1 {
+    margin: 10px 0;
+    font-size: 36px;
+    font-weight: normal;
+    color: #fff6fc;
+    text-shadow: 0 0 18px rgba(211, 194, 255, 0.7);
+}
+
+.subtitle {
+    color: #d5d5f0;
+    font-size: 14px;
+    line-height: 1.9;
+}
+
+.line {
+    width: 65px;
+    height: 1px;
+    margin: 20px auto;
+    background: linear-gradient(90deg, transparent, #d7c7ff, transparent);
+}
+
+button {
+    padding: 11px 16px;
+    margin: 5px 3px;
+    border: 1px solid rgba(255,255,255,0.25);
+    border-radius: 25px;
+    background: rgba(255,255,255,0.09);
+    color: white;
+    font-size: 12px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: rgba(192, 183, 255, 0.25);
+    box-shadow: 0 0 18px rgba(178, 169, 255, 0.3);
+    transform: translateY(-2px);
+}
+
+#message {
+    display: none;
+    color: #ffe2f0;
+    font-size: 14px;
+    line-height: 1.9;
+    margin: 18px auto 0;
+    animation: appear 0.8s ease;
+}
+
+.footer {
+    margin-top: 22px;
+    color: #aaaed0;
+    font-family: Arial, sans-serif;
+    font-size: 10px;
+    letter-spacing: 2px;
+}
+
+@media (max-width: 380px) {
+    .container {
+        padding: 22px 14px;
+    }
+    h1 {
+        font-size: 31px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div id="sky"></div>
+
+<div class="container">
+    <div class="small-title">a little universe for you</div>
+
+    <div class="heart">♡</div>
+
+    <h1>for restu</h1>
+
+    <p class="subtitle">
+        out of all the stars in the sky,<br>
+        somehow, you are the one I notice. ✧
+    </p>
+
+    <div class="line"></div>
+
+    <p class="subtitle">
+        if I could make one wish tonight,<br>
+        it would be to see you smile<br>
+        a little more every day. ♡
+    </p>
+
+    <button onclick="playMusic()" id="musicButton">
+        ♫ play our song
+    </button>
+
+    <button onclick="showMessage()">
+        ✉ open my heart
+    </button>
+
+    <p id="message">
+        if the stars could tell you one thing,<br>
+        I hope they would tell you how special you are. ♡<br><br>
+
+        you don't have to be perfect,<br>
+        you don't have to be anything else.<br>
+        just being you is already something beautiful.<br><br>
+
+        in a world full of people,<br>
+        I'm glad our paths crossed.<br>
+        I hope life is gentle with you,<br>
+        your days are filled with little joys,<br>
+        and you always have a reason to smile. 🤍<br><br>
+
+        wherever life takes us,<br>
+        I hope you remember this:<br>
+        someone out here is wishing you<br>
+        all the happiness in the universe. ✨
+    </p>
+
+    <div class="footer">MY LITTLE STAR ✧</div>
+
+    <audio id="music" loop>
+        <source src="lagu.mp3" type="audio/mpeg">
+    </audio>
+</div>
+
+<script>
+// Membuat banyak bintang
+const sky = document.getElementById("sky");
+
+for (let i = 0; i < 120; i++) {
+    const star = document.createElement("span");
+    star.className = "star";
+    star.textContent = Math.random() > 0.5 ? "✦" : "✧";
+
+    star.style.left = Math.random() * 100 + "%";
+    star.style.top = Math.random() * 100 + "%";
+    star.style.fontSize = (5 + Math.random() * 15) + "px";
+    star.style.setProperty(
+        "--duration",
+        (1 + Math.random() * 3) + "s"
+    );
+    star.style.animationDelay = Math.random() * 4 + "s";
+
+    sky.appendChild(star);
+}
+
+// Meteor yang muncul bergantian
+function createMeteor() {
+    const meteor = document.createElement("div");
+    meteor.className = "meteor";
+    meteor.style.left = (30 + Math.random() * 90) + "%";
+    meteor.style.top = Math.random() * 55 + "%";
+    sky.appendChild(meteor);
+
+    setTimeout(() => meteor.remove(), 3000);
+}
+
+setInterval(createMeteor, 1800);
+
+// Hati kecil melayang dari bawah
+function createHeart() {
+    const heart = document.createElement("span");
+    heart.className = "floating-heart";
+    heart.textContent = Math.random() > 0.5 ? "♡" : "♥";
+    heart.style.left = Math.random() * 100 + "%";
+    heart.style.fontSize = (12 + Math.random() * 18) + "px";
+
+    const duration = 5 + Math.random() * 6;
+    heart.style.animationDuration = duration + "s";
+    sky.appendChild(heart);
+
+    setTimeout(() => heart.remove(), duration * 1000);
+}
+
+setInterval(createHeart, 450);
+
+// Tombol musik
+function playMusic() {
+    const music = document.getElementById("music");
+    const button = document.getElementById("musicButton");
+
+    if (music.paused) {
+        music.play().then(() => {
+            button.textContent = "Ⅱ pause our song";
+        }).catch(() => {
+            alert("Pastikan file lagu.mp3 ada di folder yang sama dengan index.html.");
+        });
+    } else {
+        music.pause();
+        button.textContent = "♫ play our song";
+    }
+}
+
+// Buka dan tutup pesan
+function showMessage() {
+    const message = document.getElementById("message");
+
+    if (message.style.display === "block") {
+        message.style.display = "none";
+    } else {
+        message.style.display = "block";
+    }
+}
+</script>
+
+</body>
+</html>
